@@ -13,6 +13,8 @@ Books are life-changing. They have the power to enlighten, educate, entertain, h
 (Front end template)[https://github.com/codefellows/can-of-books-frontend-template/blob/main/README.md]
 (Back End Template)[https://github.com/codefellows/can-of-books-backend-template]
 
+packages
+- npm install react-bootstrap bootstrap
 
 
 ## Architecture
