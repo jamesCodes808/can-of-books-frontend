@@ -25,8 +25,33 @@ packages
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
+<details closed><summary>Log</summary>
+
+<section>
+2-27-2023 1510 - Book Component has GET method, conditionally renders based on results. Adds Navbar and links
+</section>
+
+</details>
+
 ## Estimates
-<!-- See below -->
+
+<details closed><summary>Features</summary>
+
+<section>
+Name of feature: Adds Book Component to display and render recommended books, adds navbar links
+<br/>
+Estimate of time needed to complete: 2 hours
+<br/>
+Start time: 1430
+<br/>
+Finish time: 1510
+<br/>
+Actual time needed to complete: 40 mins
+</section>
+<br/>
+
+
+</details>
 
 ## Credit and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
