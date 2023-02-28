@@ -1,0 +1,37 @@
+#about-profile-container {
+    display: grid;
+    grid-template-columns: max-content;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.profile-section {
+    margin: 20px;
+    background-color: #52423DD9;
+    color: white;
+    display: grid;
+    grid-template-columns: 150px 150px 600px;
+}
+
+.profile-section:nth-of-type(even) {
+    direction: rtl;
+}
+
+.profile-img {
+    height: 80%;
+    width: 80%;
+    margin: 20px;
+    border-radius: 50%;
+}
+
+.profile-name {
+    align-self: center;
+    padding: 10px;
+    margin: 20px;
+}
+
+.profile-text {
+    align-self: center;
+    margin: 30px;
+    line-height: 1.5;
+}
