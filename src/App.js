@@ -4,6 +4,7 @@ import About from './components/About';
 import Footer from './components/Footer';
 import BestBooks from './components/BestBooks';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './app.css'
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,7 +18,7 @@ class App extends React.Component {
         <Router>
           <Header />
           <Routes>
-            
+
             <Route
               exact path="/"
               element={<BestBooks />}
