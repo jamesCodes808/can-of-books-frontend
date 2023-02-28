@@ -49,11 +49,11 @@ class BestBooks extends React.Component {
           <>
             <Carousel activeIndex={this.state.index} onSelect={this.handleSelect}>
               {this.state.books.map(book => {
-                return <Carousel.Item>
+                return (<Carousel.Item>
                   <h3>{book.title}</h3>
                   <p>{book.description}</p>
-                  <p>{book.status}</p>
-                </Carousel.Item>
+                  <p>{book.status ? 'Have Read' : 'Have not Read'}</p>
+                </Carousel.Item>);
               })}
             </Carousel>
           </>) : (
