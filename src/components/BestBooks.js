@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
 import AddBook from './AddBook';
+import UpdateBook from './UpdateBook';
 import Button from 'react-bootstrap/Button';
 
 const SERVER = process.env.REACT_APP_BACKEND;
@@ -12,7 +13,9 @@ class BestBooks extends React.Component {
     this.state = {
       books: [],
       index: 0,
-      showCreate: false
+      selectedBook: null,
+      showCreate: false,
+      showUpdate: false
     }
   }
 
@@ -59,13 +62,18 @@ class BestBooks extends React.Component {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  updateBook = async (book) => {
+    await axios.put(`${SERVER}/books/${book._id}`, book)
+    this.getBooks();
   }
 
   componentDidMount() {
     this.getBooks();
   }
 
-  handleSelect = (selectedIdx) => {
+  handleSelectCarousel = (selectedIdx) => {
     this.setState({
       index: selectedIdx
     })
@@ -74,6 +82,17 @@ class BestBooks extends React.Component {
   toggleCreate = () => {
     this.setState({ showCreate: !this.state.showCreate });
   }
+
+  toggleUpdate = (book) => {
+    this.setState({
+      showUpdate: !this.state.showUpdate,
+      selectedBook: book,
+    })
+  }
+
+  // handleSelectUpdate = (book) => {
+  //   this.setState({ selectedBook: book, showUpdate: true })
+  // }
 
   render() {
 
@@ -85,13 +104,15 @@ class BestBooks extends React.Component {
 
         {this.state.books.length > 0 ? (
           <>
-            <Carousel activeIndex={this.state.index} onSelect={this.handleSelect}>
+
+            <Carousel activeIndex={this.state.index} onSelect={this.handleSelectCarousel}>
               {this.state.books.map(book => {
                 return (
                   <Carousel.Item key={book._id}>
                     <h3>{book.title}</h3>
                     <p>{book.description}</p>
                     <p>{book.status ? 'Have Read' : 'Have not Read'}</p>
+
                   </Carousel.Item>
                 );
               })}
@@ -102,7 +123,16 @@ class BestBooks extends React.Component {
         }
         <Button onClick={() => this.deleteBook(this.state.books[this.state.index]._id)} > Delete Book</Button>
         <Button onClick={() => this.toggleCreate()} >Create Book</Button>
+        <Button onClick={() => this.toggleUpdate(this.state.books[this.state.index])} >Update Book</Button>
+
         <AddBook show={this.state.showCreate} toggle={this.toggleCreate} postBook={this.postBook} />
+
+        <UpdateBook
+          show={this.state.showUpdate}
+          toggle={this.toggleUpdate}
+          book={this.state.selectedBook}
+          updateBook={this.updateBook}
+          getBooks={this.getBooks} />
       </>
     )
   }
