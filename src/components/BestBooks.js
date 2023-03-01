@@ -12,6 +12,7 @@ class BestBooks extends React.Component {
     this.state = {
       books: [],
       index: 0,
+      showCreate: false
     }
   }
 
@@ -70,6 +71,10 @@ class BestBooks extends React.Component {
     })
   }
 
+  toggleCreate = () => {
+    this.setState({ showCreate: !this.state.showCreate });
+  }
+
   render() {
 
     /* TODO: render all the books in a Carousel */
@@ -91,12 +96,13 @@ class BestBooks extends React.Component {
                 );
               })}
             </Carousel>
-            <Button onClick={() => this.deleteBook(this.state.books[this.state.index]._id)} > Delete Book</Button>
           </>) : (
           <h3>No Books Found :(</h3>
         )
         }
-        <AddBook postBook={this.postBook} />
+        <Button onClick={() => this.deleteBook(this.state.books[this.state.index]._id)} > Delete Book</Button>
+        <Button onClick={() => this.toggleCreate()} >Create Book</Button>
+        <AddBook show={this.state.showCreate} toggle={this.toggleCreate} postBook={this.postBook} />
       </>
     )
   }
