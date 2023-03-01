@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
+import AddBook from './AddBook';
+import Button from 'react-bootstrap/Button';
 
 const SERVER = process.env.REACT_APP_BACKEND;
 
@@ -26,12 +28,43 @@ class BestBooks extends React.Component {
 
   };
 
+  postBook = async (data) => {
+    let apiUrl = `${SERVER}/books`;
+
+    try {
+      let newBook = await axios.post(apiUrl, data);
+      console.log(newBook);
+      this.getBooks();
+      this.setState({ index: this.state.books.length - 1 })
+    } catch (err) {
+      console.error(err);
+    }
+
+    console.log('added', data.title);
+  }
+
+  deleteBook = async (id) => {
+    let apiUrl = `${SERVER}/books/${id}`;
+
+    try {
+      if (this.state.index) {
+        this.handleSelect(this.state.index - 1);
+      } else {
+        this.handleSelect(0);
+      }
+      this.setState({ index: 0 })
+      await axios.delete(apiUrl);
+      this.getBooks();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   componentDidMount() {
     this.getBooks();
   }
 
-  handleSelect = (selectedIdx, e) => {
-    e.preventDefault()
+  handleSelect = (selectedIdx) => {
     this.setState({
       index: selectedIdx
     })
@@ -49,16 +82,21 @@ class BestBooks extends React.Component {
           <>
             <Carousel activeIndex={this.state.index} onSelect={this.handleSelect}>
               {this.state.books.map(book => {
-                return (<Carousel.Item>
-                  <h3>{book.title}</h3>
-                  <p>{book.description}</p>
-                  <p>{book.status ? 'Have Read' : 'Have not Read'}</p>
-                </Carousel.Item>);
+                return (
+                  <Carousel.Item key={book._id}>
+                    <h3>{book.title}</h3>
+                    <p>{book.description}</p>
+                    <p>{book.status ? 'Have Read' : 'Have not Read'}</p>
+                  </Carousel.Item>
+                );
               })}
             </Carousel>
+            <Button onClick={() => this.deleteBook(this.state.books[this.state.index]._id)} > Delete Book</Button>
           </>) : (
           <h3>No Books Found :(</h3>
-        )}
+        )
+        }
+        <AddBook postBook={this.postBook} />
       </>
     )
   }
