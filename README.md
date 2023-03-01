@@ -31,6 +31,15 @@ packages
 2-27-2023 1510 - Book Component has GET method, conditionally renders based on results. Adds Navbar and links
 </section>
 
+<section>
+2-28-2023 1426 - Create and Delete Book method implemented
+</section>
+
+<section>
+3-1-2023 1450 - 'Update' book functionality implemented
+</section>
+
+
 </details>
 
 ## Estimates
@@ -50,6 +59,41 @@ Actual time needed to complete: 40 mins
 </section>
 <br/>
 
+<section>
+name of feature: 'Create' book functionality implemented on front end
+<br/>
+Estimate of time needed to complete: 1 hour
+<br/>
+Start time: 1400
+<br/>
+Finish time: 1420
+<br/>
+Actual time needed to complete: 20 min
+</section>
+
+<section>
+name of feature: 'Delete' book functionality implemented on front end
+<br/>
+Estimate of time needed to complete: 1 hour
+<br/>
+Start time: 1420
+<br/>
+Finish time: 1426
+<br/>
+Actual time needed to complete: 6 min
+</section>
+
+<section>
+Name of feature: 'Update' book functionality implemented on front end
+<br/>
+Estimate of time needed to complete: 1 hour
+<br/>
+Start time: 1400
+<br/>
+Finish time: 1450
+<br/>
+Actual time needed to complete: 50 min
+</section>
 
 </details>
 
