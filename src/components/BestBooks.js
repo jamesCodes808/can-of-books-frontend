@@ -52,9 +52,9 @@ class BestBooks extends React.Component {
 
     try {
       if (this.state.index) {
-        this.handleSelect(this.state.index - 1);
+        this.handleSelectCarousel(this.state.index - 1);
       } else {
-        this.handleSelect(0);
+        this.handleSelectCarousel(0);
       }
       this.setState({ index: 0 })
       await axios.delete(apiUrl);
