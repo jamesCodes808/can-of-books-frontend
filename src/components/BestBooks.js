@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import AddBook from './AddBook';
 import UpdateBook from './UpdateBook';
 import Button from 'react-bootstrap/Button';
-
+import Container from 'react-bootstrap/Container';
 const SERVER = process.env.REACT_APP_BACKEND;
 
 class BestBooks extends React.Component {
@@ -90,13 +90,8 @@ class BestBooks extends React.Component {
     })
   }
 
-  // handleSelectUpdate = (book) => {
-  //   this.setState({ selectedBook: book, showUpdate: true })
-  // }
 
   render() {
-
-    /* TODO: render all the books in a Carousel */
 
     return (
       <>
@@ -105,7 +100,10 @@ class BestBooks extends React.Component {
         {this.state.books.length > 0 ? (
           <>
 
-            <Carousel activeIndex={this.state.index} onSelect={this.handleSelectCarousel}>
+            <Carousel
+              className="text-center flex m-5"
+              activeIndex={this.state.index}
+              onSelect={this.handleSelectCarousel}>
               {this.state.books.map(book => {
                 return (
                   <Carousel.Item key={book._id}>
@@ -121,9 +119,13 @@ class BestBooks extends React.Component {
           <h3>No Books Found :(</h3>
         )
         }
-        <Button onClick={() => this.deleteBook(this.state.books[this.state.index]._id)} > Delete Book</Button>
-        <Button onClick={() => this.toggleCreate()} >Create Book</Button>
-        <Button onClick={() => this.toggleUpdate(this.state.books[this.state.index])} >Update Book</Button>
+        <Container
+          style={{ display: 'flex', gap: '5px', textAlign: 'center', justifyContent: 'center', margin: '3.5rem' }}
+        >
+          <Button onClick={() => this.deleteBook(this.state.books[this.state.index]._id)} > Delete Book</Button>
+          <Button onClick={() => this.toggleCreate()} >Create Book</Button>
+          <Button onClick={() => this.toggleUpdate(this.state.books[this.state.index])} >Update Book</Button>
+        </Container>
 
         <AddBook show={this.state.showCreate} toggle={this.toggleCreate} postBook={this.postBook} />
 
